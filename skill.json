@@ -1,0 +1,49 @@
+{
+  "name": "genpark-just-in-time-mcp-tool-compiler-skill",
+  "version": "1.0.0",
+  "description": "Autonomous Just-In-Time MCP Tool Synthesizer & Sandboxed Compiler (inspired by Manus Generalist Sandbox). Dynamically generates typed MCP tool schemas, validates Python execution AST trees against unsafe imports, compiles sandboxed callable handlers, and hot-plugs them into the active agent runtime.",
+  "tools": [
+    {
+      "name": "compile_dynamic_mcp_tool",
+      "description": "Just-In-Time tool compilation: generate JSON schemas, audit Python code AST for safety violations, compile callable tool instances, and hot-plug new tools into agent mesh.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "synthesize_and_compile_tool",
+              "execute_compiled_tool",
+              "audit_code_safety",
+              "list_active_jit_tools"
+            ],
+            "description": "Compiler action."
+          },
+          "tool_name": {
+            "type": "string",
+            "description": "Unique tool name."
+          },
+          "tool_description": {
+            "type": "string",
+            "description": "Tool functionality summary."
+          },
+          "python_code": {
+            "type": "string",
+            "description": "Python source code implementing tool handler."
+          },
+          "parameters_schema": {
+            "type": "object",
+            "description": "JSON schema for tool input arguments."
+          },
+          "call_arguments": {
+            "type": "object",
+            "description": "Arguments for invoking compiled tool."
+          }
+        },
+        "required": [
+          "action"
+        ]
+      }
+    }
+  ]
+}
